@@ -1,0 +1,17 @@
+{
+  "wbtc": {
+    "totalGasUsed": "1061586",
+    "numberOfTx": 12,
+    "avgGasCost": "88465"
+  },
+  "usdc": {
+    "totalGasUsed": "44015590",
+    "numberOfTx": 451,
+    "avgGasCost": "97595"
+  },
+  "usdt": {
+    "totalGasUsed": "18854042",
+    "numberOfTx": 197,
+    "avgGasCost": "95705"
+  }
+}
