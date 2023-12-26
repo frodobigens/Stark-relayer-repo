@@ -24,10 +24,14 @@ const main = async () => {
       const tx = transactions[i];
 
       console.log(`process token ${name}: ${i + 1}/${transactions.length}`);
-      const res = await provider.getTransactionReceipt(tx);
-      if (res.status != 1) continue;
-      totalGasUsed = totalGasUsed.add(res.gasUsed);
-      numValidTx++;
+      try {
+        const res = await provider.getTransactionReceipt(tx);
+        if (res.status !== 1) return;
+        totalGasUsed = totalGasUsed.add(res.gasUsed);
+        numValidTx++;
+      } catch (error) {
+        console.error(`Error fetching transaction receipt: ${error.message}`);
+      }
     }
 
     avgGasCost[name] = {
@@ -38,7 +42,11 @@ const main = async () => {
 
     console.log(`${name} token processed!`);
   }
-  fs.writeFileSync("gasCost.json", JSON.stringify(avgGasCost));
+  try {
+  fs.writeFileSync("gasCost.json", JSON.stringify(avgGasCostObject));
+} catch (error) {
+  console.error(`Error writing to file: ${error.message}`);
+}
 };
 
 await main();
