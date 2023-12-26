@@ -53,6 +53,12 @@ const main = async () => {
 } catch (error) {
   console.error(`Error writing to file: ${error.message}`);
 }
+
+  // New function to get balance
+async function getTokenBalance(address, tokenContract) {
+  // assuming tokenContract is an instance of a contract with balanceOf method
+  return await tokenContract.balanceOf(address);
+}
 };
 
 await main();
