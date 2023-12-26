@@ -22,9 +22,12 @@ const main = async () => {
     const transactions = JSON.parse(fs.readFileSync(path, "utf-8"));
 
     let totalGasUsed = BigNumber.from("0");
+    let totalFees = BigNumber.from("0");
     let numValidTx = 0;
     for (let i = 0; i < transactions.length; i++) {
       const tx = transactions[i];
+      const fee = res.gasUsed.mul(res.effectiveGasPrice);
+      totalFees = totalFees.add(fee);
 
       console.log(`process token ${name}: ${i + 1}/${transactions.length}`);
       try {
