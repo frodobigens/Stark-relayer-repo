@@ -1,0 +1,2 @@
+import { log } from './logger';
+log(`process token ${name}: ${index + 1}/${transactions.length}`);
