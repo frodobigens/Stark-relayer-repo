@@ -2,6 +2,9 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { ethers } from "ethers";
 import * as fs from "fs";
 
+const defaultProviderUrl = "https://eth-mainnet.g.alchemy.com/v2/yourApiKey";
+const providerUrl = process.env.PROVIDER_URL || defaultProviderUrl;
+
 const tokens = [
   { name: "wbtc", path: "transactions/wbtc.json" },
   { name: "usdc", path: "transactions/usdc.json" },
