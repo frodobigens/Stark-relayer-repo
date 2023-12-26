@@ -1,19 +1,19 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { ethers } from "ethers";
 import * as fs from "fs";
+import yargs from 'yargs';
+
+const argv = yargs(process.argv.slice(2)).argv;
 
 const defaultProviderUrl = "https://eth-mainnet.g.alchemy.com/v2/yourApiKey";
 const providerUrl = process.env.PROVIDER_URL || defaultProviderUrl;
 
-const tokens = [
-  { name: "wbtc", path: "transactions/wbtc.json" },
-  { name: "usdc", path: "transactions/usdc.json" },
-  { name: "usdt", path: "transactions/usdt.json" },
-];
+const tokens = argv.tokens || defaultTokenList;  // defaultTokenList is the original tokens array
 
 const provider = new ethers.JsonRpcProvider(
   "https://eth-mainnet.g.alchemy.com/v2/GhRSCpl1KlIV2MC4wdVyXXQrlMGq34K8"
 );
+
 
 const main = async () => {
   const avgGasCost = {};
