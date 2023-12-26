@@ -19,7 +19,7 @@ const main = async () => {
   const avgGasCost = {};
   for (let i = 0; i < tokens.length; i++) {
     const { name, path } = tokens[i];
-    const transactions = JSON.parse(fs.readFileSync(path, "utf-8"));
+   const transactions = JSON.parse(await fs.promises.readFile(path, "utf-8"));
 
     let totalGasUsed = BigNumber.from("0");
     let totalFees = BigNumber.from("0");
